@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Break Remover</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Line Break Remover</h1>
+    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+    <button onclick="removeLineBreaks()">Remove Line Breaks</button>
+    <button onclick="copyOutput()">Copy Output</button>
+    <h2>Output:</h2>
+    <div id="output"></div>
+</div>
+
+<script>
+    function removeLineBreaks() {
+        let inputText = document.getElementById('inputText').value;
+        let outputText = inputText.replace(/([^\n])\n([^\n])/g, '$1 $2');
+        document.getElementById('output').textContent = outputText;
+    }
+
+    function copyOutput() {
+        let outputText = document.getElementById('output').textContent;
+        navigator.clipboard.writeText(outputText).then(() => {
+            alert('Output text copied to clipboard!');
+<!--            document.getElementById('inputText').value = '';-->
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
+
+</script>
+
+</body>
+</html>
